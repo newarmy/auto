@@ -17,22 +17,22 @@ CREATE TABLE IF NOT EXISTS models(
 	maxprice char(10) NOT NULL,
 	minprice char(10) NOT NULL,
 	level varchar(30),
-	oil char(12),
+	oil char(15),
 	biansuxiang varchar(60),
 	struct varchar(70),
 	baoxiu varchar(80),
 	sohuId int NOT NULL
 )DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS trim(
+CREATE TABLE IF NOT EXISTS trims(
 	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name varchar(80) NOT NULL,
-	mid int NOT NULL,
+	mId int NOT NULL,
 	price char(10),
 	maxprice char(10),
 	minprice char(10),
 	level varchar(30),
-	oil char(12),
+	oil char(15),
 	biansuxiang varchar(60),
 	struct varchar(70),
 	baoxiu varchar(80),
