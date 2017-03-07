@@ -26,7 +26,23 @@ function save(table, obj, callback) {
     });
     console.log('-----------'+query.sql+'----------------');
 };
-// 插入brands
+function update(table, obj, cb) {
+
+}
+
+
+
+function updateLogo(url, bid, cb) {
+   if(!conn) {
+   		conn = createConn();
+   }
+   conn.query('UPDATE brand SET logo = ? where sohuId = ?', [url, bid], function(err, results, fields) {
+      if (err) throw err;
+  		console.log('changed ' + results.changedRows + ' rows');
+  		cb();
+   });
+}
+// ----------插入brands----------------
 var brandSize = 0;
 var brandIndex = 0;
 var brandArr = null;
@@ -50,7 +66,28 @@ function savebrandsCallback(err, results, fields) {
     }
     save('brand', brandArr[brandIndex], savebrandsCallback);
 }
+// ------------------插入subbrands--------------------
+function saveSubBrands(arr, cb) {
+	var sbrandSize = arr.length;
+	var sbrandIndex = 0;
+	function saveSubBrandsCallback(err, results, fields) {
+		if(err) {
+			console.log('insert error : '+ err);
+			return;
+		}
+		sbrandIndex++;
+		if(sbrandIndex == sbrandSize) {
+			console.log('insert subbrand done');
+			cb();
+			return;
+		}
+		save('subbrand', arr[sbrandIndex], saveSubBrandsCallback);
+	}
+	save('subbrand', arr[sbrandIndex], saveSubBrandsCallback);
+}
 
 module.exports = {
-	savebrands: savebrands
-}
+	savebrands: savebrands,
+	saveSubBrands: saveSubBrands,
+	updateLogo: updateLogo
+};
