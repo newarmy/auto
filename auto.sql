@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS models(
 CREATE TABLE IF NOT EXISTS trims(
 	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name varchar(80) NOT NULL,
+	year tinyInt NOT NULL,
 	mId int NOT NULL,
 	price char(10),
 	maxprice char(10),

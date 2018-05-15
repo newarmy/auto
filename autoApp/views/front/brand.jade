@@ -1,0 +1,37 @@
+extends layout
+block content
+    script.
+         function errorImageCallback(that, url) {
+            that.onerror = null;
+            that.src = url;
+         }
+
+
+    .area
+        div.brand-box
+            img(src="http://localhost:3000/#{brandObj.logo}" width="100" height="100")
+            h3 #{brandObj.name}
+        div.sub-title  #{brandObj.name}车型列表
+        ul.model-list
+            if subBrandList
+                each item in subBrandList
+                    li
+                        h3 #{item.subBrandName}
+                        ul
+                           each mitem in item.models
+                              li.model-item
+                                  a(href="/model/#{mitem.sohuId}" target="_blank")
+                                     img(src="#{mitem.image}" onerror="javascript:errorImageCallback(this, 'http://localhost:3000/img/default.jpg')" width="100" height="100")
+                                     span.name #{brandObj.name} #{mitem.name}
+                                     span.price #{mitem.minprice}-#{mitem.maxprice}万元
+
+            else
+                each item in modelList
+                    li.model-item
+                        a(href="/model/#{item.sohuId}" target="_blank")
+                            if item.image
+                                img(src="#{item.image}" width="100" height="100")
+                            else
+                                img(src="http://localhost:3000/img/default.jpg" width="100" height="100")
+                            span.name #{brandObj.name} #{item.name}
+                            span.price #{item.minprice}-#{item.maxprice}万元

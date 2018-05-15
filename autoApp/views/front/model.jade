@@ -1,0 +1,34 @@
+extends layout
+block content
+    .area
+       h3.model-name #{modelObj.name}
+       .model-box
+           if modelObj.image
+              img(src="#{modelObj.image}" width="600" height="400")
+           else
+              img(src="http://localhost:3000/img/default.jpg" width="600" height="400")
+           ul.model-param-list
+               li
+                    span.n 指导价
+                    span.v #{modelObj.minprice}~#{modelObj.maxprice}万元
+               li
+                    span.n 级别
+                    span.v #{modelObj.level}
+               li
+                   span.n 结构
+                   span.v #{modelObj.struct}
+               li
+                   span.n 变速箱
+                   span.v #{modelObj.biansuxiang}
+               li
+                    span.n 油耗
+                    span.v #{modelObj.oil}
+               li
+                    span.n 保修
+                    span.v #{modelObj.baoxiu}
+       h4.trims-list-title  #{modelObj.name}车款列表
+       ul.trims-list
+           each item in trimList
+               li
+                  span #{item.year}款 #{item.name}
+                  span.p #{item.price}万元

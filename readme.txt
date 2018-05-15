@@ -20,3 +20,21 @@ Windows 平台使用如下命令：
 1. 解析json文件， 填入brand表， 通过brand表下载brand logo图片
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//bugs:
+
+MySQL出现connect ECONNREFUSED  --- mysql服务没有打开
+
+
